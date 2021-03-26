@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const Card = (props) => {
   return (
     <div className="body-card">
-      <Link to={`details/${props.name}`} className="details-link">
+      <Link to={`details/${props.nativeName}`} className="details-link">
         <div className="card-image">
           <img src={props.image} alt="flag" />
         </div>

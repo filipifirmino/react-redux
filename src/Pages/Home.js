@@ -69,6 +69,7 @@ const Home = (props) => {
           ? "Carregando ..."
           : chooseSource().map((actual) => (
               <Card
+                nativeName={actual.nativeName}
                 name={actual.name}
                 image={actual.flag}
                 key={actual.name}

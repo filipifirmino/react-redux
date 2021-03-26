@@ -1,109 +1,60 @@
-import React, { useState } from "react";
+import React from "react";
 import { connect } from "react-redux";
-import { updateCountries } from "../Actions/countries.action";
+import { Link } from "react-router-dom";
+import { updateCountries, editCountrie } from "../Actions/countries.action";
 
 const CardDetails = (props) => {
-  const [isEdit, setIsEdit] = useState(false);
-  const [dataEdit, setDataEdit] = useState({});
-  console.log(isEdit);
   const editCountry = (props) => {
-    setIsEdit(true);
-    setDataEdit({
-      name: props.name,
-      image: props.image,
-      capital: props.capital,
-      population: props.population,
-      area: props.area,
-      topLevelDomain: props.topLevelDomain,
-      nativeName: props.nativeName,
-    });
+    props.edit(true, props.country);
   };
 
-  const updateCountry = () => {
-    localStorage.setItem(`${dataEdit.name}`, JSON.stringify(dataEdit));
-    props.update(dataEdit);
-    setIsEdit(false);
-  };
-  
-  console.log(props.image);
-  console.log(dataEdit);
+  const { country } = props;
+
   return (
     <div className="container-info">
       <div className="image-card">
-          <img src={props.image} alt="flag" />
+        <img src={country.flag} alt="flag" />
       </div>
       <div className="card-details-info">
-        {isEdit === false ? (
-          <ul>
-            <li>
-              Country name: <i>{props.name}</i>
-            </li>
-            <li>
-              Capital: <i>{props.capital}</i>
-            </li>
-            <li>
-              Population: <i>{props.population}</i>
-            </li>
-            <li>
-              Area: <i>{props.area}</i>
-            </li>
-            <li>Top Level Domain: {props.topLevelDomain}</li>
-          </ul>
-        ) : (
-          <form className="form-edit">
-            <input
-              type="text"
-              value={dataEdit.name}
-              onChange={(event) =>
-                setDataEdit({ ...dataEdit, name: event.target.value })
-              }
-            />
-            <input
-              type="text"
-              value={dataEdit.capital}
-              onChange={(event) =>
-                setDataEdit({ ...dataEdit, capital: event.target.value })
-              }
-            />
-            <input
-              type="text"
-              value={dataEdit.population}
-              onChange={(event) =>
-                setDataEdit({ ...dataEdit, population: event.target.value })
-              }
-            />
-            <input
-              type="text"
-              value={dataEdit.area}
-              onChange={(event) =>
-                setDataEdit({ ...dataEdit, area: event.target.value })
-              }
-            />
-            <input
-              type="text"
-              value={dataEdit.topLevelDomain}
-              onChange={(event) =>
-                setDataEdit({ ...dataEdit, topLevelDomain: event.target.value })
-              }
-            />
-          </form>
-        )}
+        <ul>
+          <li>
+            Country name: <i>{country.name}</i>
+          </li>
+          <li>
+            Capital: <i>{country.capital}</i>
+          </li>
+          <li>
+            Population: <i>{country.population}</i>
+          </li>
+          <li>
+            Area: <i>{country.area}</i>
+          </li>
+          <li>Top Level Domain: {country.topLevelDomain}</li>
+        </ul>
       </div>
       <button
         type="button"
         className="btn-edit"
-        onClick={() =>
-          isEdit === false ? editCountry(props) : updateCountry()
-        }
+        onClick={() => editCountry(props)}
       >
-        {isEdit === false ? "Edit" : "Save"}
+        Edit
       </button>
+      <Link to={`/`}>
+        <button className="btn-edit" type="button" >
+            Back
+        </button>
+      </Link>
     </div>
   );
 };
 
 const mapDispatchToProps = (dispatch) => ({
   update: (updateCountry) => dispatch(updateCountries(updateCountry)),
+  edit: (isEdit, editCountry) => dispatch(editCountrie(isEdit, editCountry)),
 });
 
-export default connect(null, mapDispatchToProps)(CardDetails);
+const mapStateToProps = (state) => ({
+  countryList: state.country.countryList,
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(CardDetails);
