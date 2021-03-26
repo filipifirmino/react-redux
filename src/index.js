@@ -6,14 +6,14 @@ import { createBrowserHistory } from "history";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import storeConfig from './Store';
+import storeConfig from "./Store";
 
 ReactDOM.render(
-  <BrowserRouter history={ createBrowserHistory() }>
-    <Provider store={ storeConfig() }>
+  <Provider store={storeConfig()}>
+    <BrowserRouter history={createBrowserHistory()}>
       <App />
-    </Provider>
-  </BrowserRouter>,
+    </BrowserRouter>
+  </Provider>,
   document.getElementById("root")
 );
 

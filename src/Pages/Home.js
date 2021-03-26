@@ -50,6 +50,7 @@ const Home = (props) => {
             type="text"
             placeholder="Search your country"
             id="serch"
+            data-testid="search"
             className="search-input"
             value={input}
             onChange={(event) => setInput(event.target.value)}

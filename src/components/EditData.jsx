@@ -15,7 +15,7 @@ const EditData = (props) => {
   };
 
   return (
-    <form className="form-edit container-info">
+    <form className="form-edit container-info" id="edit-form">
       <input
         type="text"
         value={newData.name}

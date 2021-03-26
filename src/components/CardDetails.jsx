@@ -12,7 +12,7 @@ const CardDetails = (props) => {
 
   return (
     <div className="container-info">
-      <div className="image-card">
+      <div className="image-card" id="flag-image">
         <img src={country.flag} alt="flag" />
       </div>
       <div className="card-details-info">
