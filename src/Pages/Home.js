@@ -59,6 +59,7 @@ const Home = (props) => {
             type="button"
             className="btn-search"
             onClick={() => filterCountry(input)}
+            data-testid="search-button"
           >
             Search
           </button>
@@ -67,7 +68,7 @@ const Home = (props) => {
       <span className="feedBack">{feedBack}</span>
       <div className="container-cards">
         {countryList.length === 0
-          ? "Carregando ..."
+          ? "Loading ..."
           : chooseSource().map((actual) => (
               <Card
                 nativeName={actual.nativeName}
