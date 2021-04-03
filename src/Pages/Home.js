@@ -5,16 +5,20 @@ import { connect } from "react-redux";
 import { countryAPI } from "../Actions/requestApi";
 
 const Home = (props) => {
-  const getCountry = async () => {
-    const { countryAPI } = props;
-    await countryAPI();
-  };
-
-  useEffect(() => {
-    getCountry();
-  }, []);
+  
 
   const { countryList } = props;
+  
+  useEffect(() => {
+    const getCountry = async () => {
+      const { countryAPI } = props;
+      await countryAPI();
+    };
+
+    getCountry();
+  }, [props]);
+
+ 
  
 
   const [input, setInput] = useState("");

@@ -1,11 +1,12 @@
 body {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
 }
 
 .container-body {
   width: 100%;
+  margin: 0;
+  box-sizing: border-box;
 }
 
 .header {
@@ -152,8 +153,78 @@ body {
   padding: 10px;
 }
 
-@media only screen and (max-width:480px) {
+@media only screen and (min-width:480px)  and (max-width: 590px){
+  .container-cards {
+    padding: 0;
+    width: 480px;
+  }
+  .container-info {
+    margin: 20px;
+    width: 100%;
+  }
+  .body-card {
+    margin-right:10px;
+    width: 80%;
+  }
+}
+
+@media only screen and (min-width:360px)  and (max-width: 480px){
+  body {
+    width:360px;
+  }
+  
+  .body-card {
+    flex: none;
+    width: 300px;
+    min-width: none;
+  }
+
+  .container-body {
+    margin: 0;
+    width: 360px;
+  }
+
+  .container-cards {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+  }
+
+  .details-link {
+    width: 300px;
+  }
+
+  .card-details-info{
+    width: 80%;
+  }
+
+  .container-details {
+    width: 360px;
+  }
+
+  .container-info {
+    margin: 20px;
+    width: 300px;
+  }
+
+  .container-details {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .image-card img {
+    width: 301px;
+  }
+}
+
+
+@media only screen and (min-width:600px) and (max-width: 900px){
   .container-cards {
     width: 100%;
+  }
+  .container-info {
+    width: 100%;
+    margin: 20px;
   }
 }
